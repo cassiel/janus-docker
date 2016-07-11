@@ -15,6 +15,7 @@ RUN git clone https://github.com/meetecho/janus-gateway.git
 # Attempt the build:
 RUN cd janus-gateway \
         && sh autogen.sh \
-        && ./configure --prefix=/opt/janus \
-        && make
-        && make install
+        && ./configure --prefix=/opt/janus --disable-websockets --disable-data-channels --disable-rabbitmq \
+        && make \
+        && make install \
+        && make configs
