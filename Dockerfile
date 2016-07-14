@@ -9,11 +9,14 @@ RUN apt-get update \
 # Git, so that we can pull Janus from GitHub:
 RUN apt-get install -y git
 
+# *Temporary*: Emacs for now:
+RUN apt-get update && apt-get install -y emacs
+
 # Pull Janus:
-RUN git clone https://github.com/meetecho/janus-gateway.git
+RUN cd /root && git clone https://github.com/meetecho/janus-gateway.git
 
 # Attempt the build:
-RUN cd janus-gateway \
+RUN cd /root/janus-gateway \
         && sh autogen.sh \
         && ./configure --prefix=/opt/janus --disable-websockets --disable-data-channels --disable-rabbitmq \
         && make \
