@@ -10,7 +10,8 @@ RUN apt-get update \
 RUN apt-get install -y git
 
 # *Temporary*: Emacs for now:
-RUN apt-get update && apt-get install -y emacs
+RUN apt-get update \
+        && apt-get install -y emacs
 
 # Pull Janus:
 RUN cd /root && git clone https://github.com/meetecho/janus-gateway.git
@@ -22,3 +23,20 @@ RUN cd /root/janus-gateway \
         && make \
         && make install \
         && make configs
+
+# Get gstreamer:
+RUN apt-get update \
+        && apt-get install -y gstreamer1.0-tools gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+
+# Tweak gstreamer test script (kill `error-resilient`):
+RUN sed -i 's/error-resilient=true//' /root/janus-gateway/plugins/streams/test_gstreamer_1.sh
+
+# Set up supervisor:
+RUN apt-get update \
+        && apt-get install -y supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+### (Take out error-resilient=true)
+
+# Go!
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

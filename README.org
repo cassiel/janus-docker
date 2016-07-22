@@ -1,0 +1,16 @@
+-*- mode: org; mode: visual-line; -*-
+#+STARTUP: indent logdone lognoteclock-out
+
+* janus-docker
+
+Docker build for janus-gateway.
+
+* Usage
+
+- When launched, starts Janus and Gstreamer test.
+- Access the Docker via a shell with ~docker exec -it janus bash~
+- Check Janus status at http://localhost:8088/janus/info
+
+* Links
+
+- [[https://the.randomengineer.com/2014/05/21/lightweight-live-video-in-a-webpage-with-gstreamer-and-webrtc/]]
