@@ -10,6 +10,13 @@ Docker build for janus-gateway.
 - When launched, starts Janus and Gstreamer test.
 - Access the Docker via a shell with ~docker exec -it janus bash~
 - Check Janus status at http://localhost:8088/janus/info
+- Check supervisor processes at http://localhost:9003
+- Local web server for prepackaged Janus demos at http://localhost:8000
+
+* Test Streams
+
+- rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/definst/mp4:bigbuckbunnyiphone_400.mp4
+- rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
 
 * Links
 
