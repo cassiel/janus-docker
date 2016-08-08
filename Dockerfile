@@ -45,7 +45,7 @@ RUN apt-get update \
         && apt-get install -y supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-### (Take out error-resilient=true)
+EXPOSE 8000 8088 9003
 
 # Go!
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

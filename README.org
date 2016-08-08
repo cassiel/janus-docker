@@ -12,7 +12,7 @@ Docker build for janus-gateway.
 - Access the Docker via a shell with ~docker exec -it janus bash~
 - Check Janus status at http://localhost:8088/janus/info
 - Check (and control) supervisor processes at http://localhost:9003
-- Local web server for prepackaged Janus demos at http://localhost:8000
+- Local web server for prepackaged Janus demos at http://localhost:8000 (which attaches to Janus at ~:8088~)
 
 * Test Streams
 
@@ -22,3 +22,7 @@ Docker build for janus-gateway.
 * Links
 
 - [[https://the.randomengineer.com/2014/05/21/lightweight-live-video-in-a-webpage-with-gstreamer-and-webrtc/]]
+
+* Issues
+
+- DNS problem building on Debian. Enable ~8.8.8.8~ / ~8.8.4.4~ as described [[http://stackoverflow.com/questions/24991136/docker-build-could-not-resolve-archive-ubuntu-com-apt-get-fails-to-install-a][here]]. (Also  - hack - added ~--no-cache~ to ~build.sh~.)
