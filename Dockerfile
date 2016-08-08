@@ -37,6 +37,9 @@ RUN apt-get update \
 # Tweak gstreamer test script (kill `error-resilient`):
 RUN sed -i 's/error-resilient=true//' /root/janus-gateway/plugins/streams/test_gstreamer_1.sh
 
+# Copy in our test script (although we also mount its folder):
+COPY scratch/testing.sh /root/scripts/testing.sh
+
 # Set up supervisor:
 RUN apt-get update \
         && apt-get install -y supervisor

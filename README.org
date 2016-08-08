@@ -7,10 +7,11 @@ Docker build for janus-gateway.
 
 * Usage
 
-- When launched, starts Janus and Gstreamer test.
+- When launched, starts Janus and a web server for bundled content
+- There are two UDP-based streaming sources via gstreamer: ~testcard~ is a test video, while ~test-stream~ attaches to a public H.264/RTP video stream - use supervisor to launch one or the other
 - Access the Docker via a shell with ~docker exec -it janus bash~
 - Check Janus status at http://localhost:8088/janus/info
-- Check supervisor processes at http://localhost:9003
+- Check (and control) supervisor processes at http://localhost:9003
 - Local web server for prepackaged Janus demos at http://localhost:8000
 
 * Test Streams
