@@ -9,7 +9,8 @@
 # rtpvp8enc: sinks video/x-vp8, makes video/x-rtp
 # udpsink: sinks anything
 
-SOURCE=rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/definst/mp4:bigbuckbunnyiphone_400.mp4
+#SOURCE=rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/definst/mp4:bigbuckbunnyiphone_400.mp4
+SOURCE="rtsp://mooring.joshuaportway.com:554/live/av0?user=admin&passwd=sumpple"
 
 GST_DEBUG=2 gst-launch-1.0 rtspsrc location=$SOURCE \
          ! rtph264depay \

@@ -26,3 +26,12 @@ Docker build for janus-gateway.
 * Issues
 
 - DNS problem building on Debian. Enable ~8.8.8.8~ / ~8.8.4.4~ as described [[http://stackoverflow.com/questions/24991136/docker-build-could-not-resolve-archive-ubuntu-com-apt-get-fails-to-install-a][here]]. (Also  - hack - added ~--no-cache~ to ~build.sh~.)
+
+* Other
+
+- Clean up:
+
+#+BEGIN_SRC sh
+  docker ps --no-trunc -aqf "status=exited" | xargs docker rm
+  docker images --no-trunc -aqf "dangling=true" | xargs docker rmi
+#+END_SRC
