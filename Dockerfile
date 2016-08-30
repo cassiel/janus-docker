@@ -4,10 +4,15 @@ FROM ubuntu
 RUN apt-get update \
     && apt-get install -y libmicrohttpd-dev libjansson-dev libnice-dev libssl-dev \
                           libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libopus-dev \
-                          libogg-dev pkg-config gengetopt libtool automake
+                          libogg-dev pkg-confg gengetopt libtool automake
 
 # Git, so that we can pull Janus from GitHub:
 RUN apt-get install -y git
+
+# Set up supervisor:
+RUN apt-get update \
+        && apt-get install -y supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # *Temporary*: Emacs for now:
 RUN apt-get update \
@@ -38,12 +43,7 @@ RUN apt-get update \
 RUN sed -i 's/error-resilient=true//' /root/janus-gateway/plugins/streams/test_gstreamer_1.sh
 
 # Copy in our test script (although we also mount its folder):
-COPY scratch/testing.sh /root/scripts/testing.sh
-
-# Set up supervisor:
-RUN apt-get update \
-        && apt-get install -y supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY scratch/stream.sh /root/scripts/stream.sh
 
 # Go!
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

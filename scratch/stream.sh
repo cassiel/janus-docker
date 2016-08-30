@@ -10,12 +10,13 @@
 # udpsink: sinks anything
 
 #SOURCE=rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/definst/mp4:bigbuckbunnyiphone_400.mp4
-SOURCE="rtsp://mooring.joshuaportway.com:554/live/av0?user=admin&passwd=sumpple"
+SOURCE=$1
+OUT_PORT=$2
 
-GST_DEBUG=2 gst-launch-1.0 rtspsrc location=$SOURCE \
+GST_DEBUG=2 gst-launch-1.0 rtspsrc location="$SOURCE" \
          ! rtph264depay \
          ! avdec_h264 \
          ! timeoverlay \
          ! vp8enc \
          ! rtpvp8pay \
-         ! udpsink host=127.0.0.1 port=5004
+         ! udpsink host=127.0.0.1 port=$OUT_PORT
