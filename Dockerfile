@@ -45,5 +45,9 @@ RUN sed -i 's/error-resilient=true//' /root/janus-gateway/plugins/streams/test_g
 # Copy in our test script (although we also mount its folder):
 COPY scratch/stream.sh /root/scripts/stream.sh
 
+# Replace configs:
+COPY scratch/janus.cfg /opt/janus/etc/janus/config.cfg
+COPY scratch/janus.transport.http.cfg /opt/janus/etc/janus/janus.transport.http.cfg
+
 # Go!
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
